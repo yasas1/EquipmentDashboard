@@ -1,0 +1,7 @@
+{
+    "/api/*": {
+        "target": "http://ivivaanywhere.ivivacloud.com",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}
