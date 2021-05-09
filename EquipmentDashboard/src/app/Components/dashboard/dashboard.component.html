@@ -1,1 +1,12 @@
-<p>dashboard works!</p>
+<div>
+
+    <h1>Equipment Dashboard</h1>
+
+    <div> Operational : {{operationalCount}}</div>
+
+    <div> Non-Operational :{{nonOperationalCount}}</div>
+
+    <app-barchart *ngIf="chartData" [chartData]="chartData"> </app-barchart>
+
+</div>
+
