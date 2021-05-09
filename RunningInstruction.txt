@@ -1,0 +1,35 @@
+			Running Instructions
+01) Prerequisite
+
+	node and angular 
+
+	node: https://nodejs.org/en/download/
+	angular : https://angular.io/cli
+
+02) Clone the repository
+
+	git clone https://github.com/yasas1/EquipmentDashboard.git
+
+03) Change directory
+	cd EquipmentDashboard/EquipmentDashboard
+	(Note: Get into the folder that is included the src folder)
+
+
+04) Install dependenciesb(node_modules)
+	
+	npm install  ( Or "npm run build" )
+
+05) Run
+	ng serve
+
+06) Dashboard on Browser
+	http://localhost:4200/
+
+	default port is 4200
+	after "ng serve" command, running URL will be displayed in the terminal
+
+	
+
+
+
+
