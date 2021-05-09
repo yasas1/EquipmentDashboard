@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   public operationalCount = 0;
   public nonOperationalCount = 0;
 
+  // for chart data
   public chartData: Array<{assetCategory:string,count:number}>;
 
   private equipmentlist :Array<EquipmentProperty> =[];
@@ -99,7 +100,7 @@ export class DashboardComponent implements OnInit {
 
   /**
    * set data into chartData
-   * @param dataArray is the data array that is fetched from store or api
+   * @param dataArray is the data array that is included data fetched from the store or api
    */
   private setChartData(dataArray:Array<EquipmentProperty>): void {
 
@@ -117,7 +118,7 @@ export class DashboardComponent implements OnInit {
       else if(equipment.OperationalStatus == OperationalStatus.NonOperational){
         this.nonOperationalCount++;
       }
-
+      //count occurences by assest category id
       let assetCategoryID = equipment.AssetCategoryID;
       count[assetCategoryID] = count[assetCategoryID]? count[assetCategoryID] + 1 : 1;
     }

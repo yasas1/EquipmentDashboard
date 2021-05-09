@@ -28,14 +28,15 @@ export class EquipmentService {
     return this.http.get(this.url+this.apiKey+'&max='+max+'&last='+last).pipe(
       map(data =>{
 
-        const array: Array<EquipmentProperty> = [];
+        const resultArray: Array<EquipmentProperty> = [];
+
         for(const item in data){
           if(data.hasOwnProperty(item)){
-            array.push(data[item]);
+            resultArray.push(data[item]);
           }
           
         }
-        return array;
+        return resultArray;
       })
     )
   }

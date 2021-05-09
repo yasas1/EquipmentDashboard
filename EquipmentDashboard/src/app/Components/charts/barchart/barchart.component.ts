@@ -10,18 +10,18 @@ import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 })
 export class BarchartComponent  {
 
+  //chart data from dashboard component
   @Input() chartData : Array<{assetCategory:string,count:number}>;
 
   constructor() {}
 
-
   ngAfterViewInit() {
-    console.log("chart component");
-    
     this. chartInitialization();
-    
   }
 
+  /**
+   * chart initialization
+   */
   private chartInitialization(){
     // Chart code goes in here
     am4core.useTheme(am4themes_animated);
@@ -33,6 +33,7 @@ export class BarchartComponent  {
 
     // Create axes
 
+    // category axis
     let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
     categoryAxis.dataFields.category = "assetCategory";
   
@@ -41,7 +42,10 @@ export class BarchartComponent  {
     categoryAxis.renderer.grid.template.disabled = true;
     categoryAxis.title.text="Equipment Type";
     categoryAxis.title.fontWeight = "bolder";
+    categoryAxis.title.fontSize = 18; 
+    categoryAxis.title.fill = am4core.color("#33A4FF");
     
+    //value axis
     let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
     valueAxis.extraMax = 0.22;
 
@@ -58,28 +62,30 @@ export class BarchartComponent  {
     series.columns.template.fillOpacity = .8;
     series.columns.template.column.cornerRadiusTopRight = 4;
     series.columns.template.column.cornerRadiusTopLeft = 4;
+    series.columns.template.strokeWidth = 1;
+    series.columns.template.strokeOpacity = 1;
 
-    //put label as bullets top of bars
+    //put label as bullets on the top of bars
     let bullet = series.bullets.push(new am4charts.LabelBullet);
     bullet.label.text = "{categoryX}";
-    bullet.label.fontSize = 12; 
-    bullet.label.fontWeight="600";
-    bullet.label.fontFamily="Teko"
+    bullet.label.fontSize = 14; 
+    bullet.label.fontWeight="bolder";
+    bullet.label.fontFamily="Teko";
+    bullet.label.fill = am4core.color("#3B9C9C");
     bullet.label.rotation = 270;
     bullet.label.truncate = false;
     bullet.label.hideOversized = false;
     bullet.label.horizontalCenter="left";
 
-
-    let columnTemplate = series.columns.template;
-    columnTemplate.strokeWidth = 1;
-    columnTemplate.strokeOpacity = 1;
-
+    //add cursor 
     chart.cursor = new am4charts.XYCursor();
 
     //add scroll bar on bottom
     chart.scrollbarX = new am4core.Scrollbar();
     chart.scrollbarX.parent = chart.bottomAxesContainer;
+    chart.scrollbarX.startGrip.background.fill = am4core.color("#3388FF");
+    chart.scrollbarX.endGrip.background.fill = am4core.color("#3388FF");
+    chart.scrollbarX.thumb.background.fill = am4core.color("#33A4FF");
 
   }
 

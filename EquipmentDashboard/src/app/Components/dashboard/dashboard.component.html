@@ -1,10 +1,12 @@
-<div>
+<div class="content">
 
-    <h1>Equipment Dashboard</h1>
+    <h2 class="dashboardHeader">Equipment Dashboard</h2>
 
-    <div> Operational : {{operationalCount}}</div>
+    <div class="operationalStatus"> Operational : <b>{{operationalCount}}</b> </div>
 
-    <div> Non-Operational :{{nonOperationalCount}}</div>
+    <div class="operationalStatus"> Non-Operational : <b>{{nonOperationalCount}}</b> </div>
+
+    <br> <br>
 
     <app-barchart *ngIf="chartData" [chartData]="chartData"> </app-barchart>
 
