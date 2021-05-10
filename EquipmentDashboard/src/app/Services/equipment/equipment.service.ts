@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, mergeMap, switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-
 import EquipmentProperty from 'src/app/Models/EquipmentProperty.interface';
 
 @Injectable({

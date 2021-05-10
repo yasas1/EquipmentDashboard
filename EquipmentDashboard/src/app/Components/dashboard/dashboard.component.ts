@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { forkJoin } from 'rxjs';
 import { Equipment } from 'src/app/Models/Equipment';
-import EquipmentProperty from 'src/app/Models/EquipmentProperty.interface';
 import { OperationalStatus } from 'src/app/Models/OperationalStatus';
 import { EquipmentService } from 'src/app/Services/equipment/equipment.service';
 
