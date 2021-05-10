@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, mergeMap, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 import EquipmentProperty from 'src/app/Models/EquipmentProperty.interface';
@@ -13,6 +13,8 @@ export class EquipmentService {
   private apiKey = 'SC:demo:64a9aa122143a5db';
   private url:string;
 
+  private maxPerOneRequest = 100;
+
   /* API: http://ivivaanywhere.ivivacloud.com/api/Asset/Asset/All?pikey=SC:demo:64a9aa122143a5db&max=10&last=0  */
 
   constructor(private http:HttpClient) { 
@@ -21,24 +23,29 @@ export class EquipmentService {
 
  /**
    * get equipment data from the api
-   * @param max The maximum number of items to return each time the api is called
-   * @param last Last rowid of the data to be started 
    */
-  getEquipmentData(max:number,last:number):Observable<EquipmentProperty[]>{
-    return this.http.get(this.url+this.apiKey+'&max='+max+'&last='+last).pipe(
-      map(data =>{
+  async getEquipmentData() {
 
-        const resultArray: Array<EquipmentProperty> = [];
+    let countWithMax = 0;
+    let lastid = 0;
+    const resultArray: Array<EquipmentProperty> = [];
 
+    do{
+
+      await this.http.get(this.url+this.apiKey+'&max='+this.maxPerOneRequest+'&last='+lastid).toPromise().then(data=>{
         for(const item in data){
           if(data.hasOwnProperty(item)){
             resultArray.push(data[item]);
+            lastid = parseInt(data[item].__rowid__);
           }
-          
         }
-        return resultArray;
-      })
-    )
+      });
+      countWithMax += this.maxPerOneRequest;
+      
+    }while(lastid >= countWithMax);
+
+    return resultArray;
+
   }
 
 }
