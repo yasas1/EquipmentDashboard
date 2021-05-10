@@ -24,22 +24,22 @@ export class EquipmentService {
   async getEquipmentData() {
 
     let countWithMax = 0;
-    let lastid = 0;
+    let lastId = 0;
     const resultArray: Array<EquipmentProperty> = [];
 
     do{
 
-      await this.http.get(this.url+this.apiKey+'&max='+this.maxPerOneRequest+'&last='+lastid).toPromise().then(data=>{
+      await this.http.get(this.url+this.apiKey+'&max='+this.maxPerOneRequest+'&last='+lastId).toPromise().then(data=>{
         for(const item in data){
           if(data.hasOwnProperty(item)){
             resultArray.push(data[item]);
-            lastid = parseInt(data[item].__rowid__);
+            lastId = parseInt(data[item].__rowid__);
           }
         }
       });
       countWithMax += this.maxPerOneRequest;
       
-    }while(lastid >= countWithMax);
+    }while(lastId >= countWithMax);
 
     return resultArray;
 

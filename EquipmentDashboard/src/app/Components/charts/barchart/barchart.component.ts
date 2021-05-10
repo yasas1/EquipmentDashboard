@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
+import { ChartData } from 'src/app/Models/ChartData';
 
 @Component({
   selector: 'app-barchart',
@@ -11,7 +12,7 @@ import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 export class BarchartComponent  {
 
   //chart data from dashboard component
-  @Input() chartData : Array<{assetCategory:string,count:number}>;
+  @Input() chartData : Array<ChartData>;
 
   constructor() {}
 

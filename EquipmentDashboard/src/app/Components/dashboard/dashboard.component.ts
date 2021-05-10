@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ChartData } from 'src/app/Models/ChartData';
 import { Equipment } from 'src/app/Models/Equipment';
 import { OperationalStatus } from 'src/app/Models/OperationalStatus';
 import { EquipmentService } from 'src/app/Services/equipment/equipment.service';
@@ -14,7 +15,7 @@ export class DashboardComponent implements OnInit {
   public nonOperationalCount = 0;
 
   // chart data for the chart component
-  public chartData: Array<{assetCategory:string,count:number}>;
+  public chartData: Array<ChartData>;
 
   private equipmentlist :Array<Equipment> =[];
 
@@ -94,7 +95,10 @@ export class DashboardComponent implements OnInit {
     }
 
     for(let data in categoryIdCount){
-      this.chartData.push({assetCategory: data, count:categoryIdCount[data]} );
+      let column = new ChartData();
+      column.assetCategory = data;
+      column.count = categoryIdCount[data];
+      this.chartData.push(column);
     }
 
   }
