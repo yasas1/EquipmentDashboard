@@ -1,2 +1,2 @@
 # EquipmentDashboard
-Dashboard application a bar chart
+Dashboard application for equipments
